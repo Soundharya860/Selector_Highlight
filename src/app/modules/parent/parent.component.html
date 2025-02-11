@@ -1,0 +1,8 @@
+ <app-child [value1]="value1" [value2]="value2" (sumNumberValue)="showSumValues = $event"></app-child>
+
+ <input type="number" name="" id="" [(ngModel)]="value1">
+ <br>
+ <input type="number" name="" id="" [(ngModel)]="value2">
+ <br>
+
+ The Added Value is: {{showSumValues}}
