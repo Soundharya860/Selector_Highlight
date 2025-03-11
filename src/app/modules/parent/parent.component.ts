@@ -1,16 +1,14 @@
-import { Component, output } from '@angular/core';
-import { ChildComponent } from "../child/child.component";
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common'; // Required for standalone components
+import { ContainerResizerComponent } from '../child/child.component';
+
 
 @Component({
   selector: 'app-parent',
-  imports: [ChildComponent, FormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, ContainerResizerComponent], // Import ContainerResizerComponent
   templateUrl: './parent.component.html',
-  styleUrl: './parent.component.css'
+  styleUrls: ['./parent.component.css']
 })
-export class ParentComponent {
-  value1: number = 0;
-  value2: number = 0;
-
-  showSumValues: any ;
-}
+export class ParentComponent {}

@@ -1,23 +1,28 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component,HostListener } from '@angular/core';
 
 @Component({
-  selector: 'app-child',
-  imports: [],
-  templateUrl: './child.component.html',
-  styleUrl: './child.component.css'
+  standalone:true,
+  selector: 'div[container-resizer]', // This makes it an attribute selector
+  templateUrl:'child.component.html', // Allows the div content to be preserved
+  styles: [`
+    :host {
+      display: block;
+      border: 2px solid black;
+      resize: both;
+      overflow: auto;
+      padding: 10px;
+    }
+    :host(:hover) {
+      border-color: blue;
+    }
+  `]
 })
-export class ChildComponent implements OnChanges {
-  @Output() sumNumberValue: EventEmitter<number> = new EventEmitter();
-  @Input() value1: number = 0;
-  @Input() value2: number = 0;
-
-ngOnChanges(Simplechanges:SimpleChanges) {
-  if(Simplechanges['value1']?.currentValue || Simplechanges['value2']?.currentValue) {
-    this.addValue();
+export class ContainerResizerComponent {
+  @HostListener('mouseenter') onMouseEnter() {
+    console.log('Mouse entered the resizable container');
   }
-}
-  addValue() {
-    let value = this.value1 + this.value2;
-    this.sumNumberValue.emit(value);
+      
+  @HostListener('mouseleave') onMouseLeave() {
+    console.log('Mouse left the resizable container');
   }
 }
