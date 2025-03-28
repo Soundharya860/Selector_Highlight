@@ -1,4 +1,17 @@
-<div container-resizer style="width: 200px; height: 100px;">
-    Resize me!
-  </div>
-  
+count: {{count()}} <br><br>
+count1: {{count1()}} <br><br>
+count2: {{count2()}} <br><br>
+
+<button type="button" (click)="increaseValue()">AddValue</button>
+
+@defer (when count2() == 15) {
+  <div>count2 is greater than 15</div>
+}
+@placeholder {
+  <p>Future comments</p>
+}
+@loading (minimum 5s) {
+  <div>Loading ....</div>
+}
+
+
